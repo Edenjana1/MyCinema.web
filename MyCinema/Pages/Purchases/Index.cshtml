@@ -1,0 +1,54 @@
+﻿@page
+@model MyCinema.Pages.Purchases.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Purchase[0].PurchaseID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Purchase[0].SerieID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Purchase[0].CostumerID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Purchase[0].PurchaseDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Purchase) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PurchaseID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SerieID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CostumerID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PurchaseDate)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.MovieID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.MovieID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.MovieID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
