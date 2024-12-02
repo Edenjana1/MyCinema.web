@@ -16,5 +16,6 @@ namespace MyCinema.Models
         public Serie Series { get; set; }
         public Costumer Costumers { get; set; }
 
+
     }
 }

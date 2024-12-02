@@ -4,7 +4,7 @@ namespace MyCinema.Models
 {
     public enum Genre
     {
-        Drama, Horror, Thriller, Romantic, Comady, SciFi, Action, Crime
+        Drama, Horror, Thriller, Romantic, Comady, SciFi, Action, Crime , Fantasy
     }
     public class Movie
     {

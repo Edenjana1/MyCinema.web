@@ -23,6 +23,7 @@ namespace MyCinema.Pages.Purchases
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+
             if (id == null)
             {
                 return NotFound();

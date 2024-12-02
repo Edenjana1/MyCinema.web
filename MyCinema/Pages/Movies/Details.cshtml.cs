@@ -23,6 +23,7 @@ namespace MyCinema.Pages.Movies
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
+
             if (id == null)
             {
                 return NotFound();
