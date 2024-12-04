@@ -9,7 +9,6 @@ namespace MyCinema.Models
     public class Movie
     {
         public string MovieID { get; set; }
-        [Key]
         public string MovieName { get; set; }
         public Genre? MovieGenre { get; set; }
         public string MovieDescription { get; set; }

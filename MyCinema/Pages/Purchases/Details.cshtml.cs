@@ -23,13 +23,12 @@ namespace MyCinema.Pages.Purchases
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-
             if (id == null)
             {
                 return NotFound();
             }
 
-            var purchase = await _context.Purchases.FirstOrDefaultAsync(m => m.MovieID == id);
+            var purchase = await _context.Purchases.FirstOrDefaultAsync(m => m.PurchaseID == id);
             if (purchase == null)
             {
                 return NotFound();

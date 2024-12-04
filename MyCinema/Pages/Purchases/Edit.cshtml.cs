@@ -30,12 +30,13 @@ namespace MyCinema.Pages.Purchases
                 return NotFound();
             }
 
-            var purchase =  await _context.Purchases.FirstOrDefaultAsync(m => m.MovieID == id);
+            var purchase =  await _context.Purchases.FirstOrDefaultAsync(m => m.PurchaseID == id);
             if (purchase == null)
             {
                 return NotFound();
             }
             Purchase = purchase;
+           ViewData["SerieID"] = new SelectList(_context.Series, "SerieID", "SerieID");
             return Page();
         }
 
@@ -56,7 +57,7 @@ namespace MyCinema.Pages.Purchases
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PurchaseExists(Purchase.MovieID))
+                if (!PurchaseExists(Purchase.PurchaseID))
                 {
                     return NotFound();
                 }
@@ -71,7 +72,7 @@ namespace MyCinema.Pages.Purchases
 
         private bool PurchaseExists(int id)
         {
-            return _context.Purchases.Any(e => e.MovieID == id);
+            return _context.Purchases.Any(e => e.PurchaseID == id);
         }
     }
 }

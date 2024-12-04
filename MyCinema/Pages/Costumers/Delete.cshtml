@@ -19,6 +19,12 @@
             @Html.DisplayFor(model => model.Costumer.CustomerID)
         </dd>
         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Costumer.LastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Costumer.LastName)
+        </dd>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Costumer.FirstMidName)
         </dt>
         <dd class="col-sm-10">
@@ -51,7 +57,7 @@
     </dl>
     
     <form method="post">
-        <input type="hidden" asp-for="Costumer.LastName" />
+        <input type="hidden" asp-for="Costumer.IdentityCard" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
         <a asp-page="./Index">Back to List</a>
     </form>

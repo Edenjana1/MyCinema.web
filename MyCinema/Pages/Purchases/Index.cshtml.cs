@@ -23,7 +23,8 @@ namespace MyCinema.Pages.Purchases
 
         public async Task OnGetAsync()
         {
-            Purchase = await _context.Purchases.ToListAsync();
+            Purchase = await _context.Purchases
+                .Include(p => p.Series).ToListAsync();
         }
     }
 }

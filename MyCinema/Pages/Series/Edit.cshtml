@@ -13,12 +13,12 @@
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Serie.SerieID" />
             <div class="form-group">
-                <label asp-for="Serie.SerieID" class="control-label"></label>
-                <input asp-for="Serie.SerieID" class="form-control" />
-                <span asp-validation-for="Serie.SerieID" class="text-danger"></span>
+                <label asp-for="Serie.SerieName" class="control-label"></label>
+                <input asp-for="Serie.SerieName" class="form-control" />
+                <span asp-validation-for="Serie.SerieName" class="text-danger"></span>
             </div>
-            <input type="hidden" asp-for="Serie.SerieName" />
             <div class="form-group">
                 <label asp-for="Serie.SeasonNum" class="control-label"></label>
                 <input asp-for="Serie.SeasonNum" class="form-control" />

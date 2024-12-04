@@ -22,14 +22,14 @@ namespace MyCinema.Pages.Series
         [BindProperty]
         public Serie Serie { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(string id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var serie = await _context.Series.FirstOrDefaultAsync(m => m.SerieName == id);
+            var serie = await _context.Series.FirstOrDefaultAsync(m => m.SerieID == id);
 
             if (serie == null)
             {
@@ -42,7 +42,7 @@ namespace MyCinema.Pages.Series
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(string id)
+        public async Task<IActionResult> OnPostAsync(int? id)
         {
             if (id == null)
             {

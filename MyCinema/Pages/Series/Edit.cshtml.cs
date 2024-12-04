@@ -23,14 +23,14 @@ namespace MyCinema.Pages.Series
         [BindProperty]
         public Serie Serie { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(string id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var serie =  await _context.Series.FirstOrDefaultAsync(m => m.SerieName == id);
+            var serie =  await _context.Series.FirstOrDefaultAsync(m => m.SerieID == id);
             if (serie == null)
             {
                 return NotFound();
@@ -56,7 +56,7 @@ namespace MyCinema.Pages.Series
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!SerieExists(Serie.SerieName))
+                if (!SerieExists(Serie.SerieID))
                 {
                     return NotFound();
                 }
@@ -69,9 +69,9 @@ namespace MyCinema.Pages.Series
             return RedirectToPage("./Index");
         }
 
-        private bool SerieExists(string id)
+        private bool SerieExists(int id)
         {
-            return _context.Series.Any(e => e.SerieName == id);
+            return _context.Series.Any(e => e.SerieID == id);
         }
     }
 }

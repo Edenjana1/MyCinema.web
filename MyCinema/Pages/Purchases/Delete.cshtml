@@ -13,16 +13,16 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Purchase.PurchaseID)
+            @Html.DisplayNameFor(model => model.Purchase.PurchaseDate)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Purchase.PurchaseID)
+            @Html.DisplayFor(model => model.Purchase.PurchaseDate)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Purchase.SerieID)
+            @Html.DisplayNameFor(model => model.Purchase.MovieID)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Purchase.SerieID)
+            @Html.DisplayFor(model => model.Purchase.MovieID)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Purchase.CostumerID)
@@ -31,15 +31,15 @@
             @Html.DisplayFor(model => model.Purchase.CostumerID)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Purchase.PurchaseDate)
+            @Html.DisplayNameFor(model => model.Purchase.Series)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Purchase.PurchaseDate)
+            @Html.DisplayFor(model => model.Purchase.Series.SerieID)
         </dd>
     </dl>
     
     <form method="post">
-        <input type="hidden" asp-for="Purchase.MovieID" />
+        <input type="hidden" asp-for="Purchase.PurchaseID" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
         <a asp-page="./Index">Back to List</a>
     </form>

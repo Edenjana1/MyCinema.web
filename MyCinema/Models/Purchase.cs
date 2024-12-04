@@ -5,11 +5,10 @@ namespace MyCinema.Models
     public class Purchase
     {
         public int PurchaseID { get; set; }
-        [Key]
+        public DateTime PurchaseDate { get; set; }
         public int MovieID { get; set; }
         public int SerieID { get; set; }
         public int CostumerID { get; set; }
-        public DateTime PurchaseDate { get; set; }
 
 
         public Movie Movies { get; set; }

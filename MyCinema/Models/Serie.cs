@@ -5,7 +5,6 @@ namespace MyCinema.Models
     public class Serie
     {
         public int SerieID { get; set; }
-        [Key]
         public string SerieName { get; set; }
         public int SeasonNum { get; set; }
         public Genre? SerieGenre { get; set; }

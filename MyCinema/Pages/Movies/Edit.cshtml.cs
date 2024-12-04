@@ -30,7 +30,7 @@ namespace MyCinema.Pages.Movies
                 return NotFound();
             }
 
-            var movie =  await _context.Movies.FirstOrDefaultAsync(m => m.MovieName == id);
+            var movie =  await _context.Movies.FirstOrDefaultAsync(m => m.MovieID == id);
             if (movie == null)
             {
                 return NotFound();
@@ -56,7 +56,7 @@ namespace MyCinema.Pages.Movies
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MovieExists(Movie.MovieName))
+                if (!MovieExists(Movie.MovieID))
                 {
                     return NotFound();
                 }
@@ -71,7 +71,7 @@ namespace MyCinema.Pages.Movies
 
         private bool MovieExists(string id)
         {
-            return _context.Movies.Any(e => e.MovieName == id);
+            return _context.Movies.Any(e => e.MovieID == id);
         }
     }
 }

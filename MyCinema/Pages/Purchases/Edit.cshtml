@@ -13,26 +13,26 @@
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Purchase.PurchaseID" />
             <div class="form-group">
-                <label asp-for="Purchase.PurchaseID" class="control-label"></label>
-                <input asp-for="Purchase.PurchaseID" class="form-control" />
-                <span asp-validation-for="Purchase.PurchaseID" class="text-danger"></span>
+                <label asp-for="Purchase.PurchaseDate" class="control-label"></label>
+                <input asp-for="Purchase.PurchaseDate" class="form-control" />
+                <span asp-validation-for="Purchase.PurchaseDate" class="text-danger"></span>
             </div>
-            <input type="hidden" asp-for="Purchase.MovieID" />
+            <div class="form-group">
+                <label asp-for="Purchase.MovieID" class="control-label"></label>
+                <input asp-for="Purchase.MovieID" class="form-control" />
+                <span asp-validation-for="Purchase.MovieID" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="Purchase.SerieID" class="control-label"></label>
-                <input asp-for="Purchase.SerieID" class="form-control" />
+                <select asp-for="Purchase.SerieID" class="form-control" asp-items="ViewBag.SerieID"></select>
                 <span asp-validation-for="Purchase.SerieID" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Purchase.CostumerID" class="control-label"></label>
                 <input asp-for="Purchase.CostumerID" class="form-control" />
                 <span asp-validation-for="Purchase.CostumerID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Purchase.PurchaseDate" class="control-label"></label>
-                <input asp-for="Purchase.PurchaseDate" class="form-control" />
-                <span asp-validation-for="Purchase.PurchaseDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

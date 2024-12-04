@@ -22,14 +22,14 @@ namespace MyCinema.Pages.Costumers
         [BindProperty]
         public Costumer Costumer { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(string id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var costumer = await _context.Costumers.FirstOrDefaultAsync(m => m.LastName == id);
+            var costumer = await _context.Costumers.FirstOrDefaultAsync(m => m.IdentityCard == id);
 
             if (costumer == null)
             {
@@ -42,7 +42,7 @@ namespace MyCinema.Pages.Costumers
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(string id)
+        public async Task<IActionResult> OnPostAsync(int? id)
         {
             if (id == null)
             {

@@ -5,7 +5,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>רכישות</h1>
+<h1>Index</h1>
 
 <p>
     <a asp-page="Create">Create New</a>
@@ -14,16 +14,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Purchase[0].PurchaseID)
+                @Html.DisplayNameFor(model => model.Purchase[0].PurchaseDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Purchase[0].SerieID)
+                @Html.DisplayNameFor(model => model.Purchase[0].MovieID)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Purchase[0].CostumerID)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Purchase[0].PurchaseDate)
+                @Html.DisplayNameFor(model => model.Purchase[0].Series)
             </th>
             <th></th>
         </tr>
@@ -32,21 +32,21 @@
 @foreach (var item in Model.Purchase) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.PurchaseID)
+                @Html.DisplayFor(modelItem => item.PurchaseDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SerieID)
+                @Html.DisplayFor(modelItem => item.MovieID)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CostumerID)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PurchaseDate)
+                @Html.DisplayFor(modelItem => item.Series.SerieID)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.MovieID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.MovieID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.MovieID">Delete</a>
+                <a asp-page="./Edit" asp-route-id="@item.PurchaseID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.PurchaseID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.PurchaseID">Delete</a>
             </td>
         </tr>
 }

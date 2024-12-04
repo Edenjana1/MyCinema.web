@@ -12,10 +12,10 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Movie.MovieID)
+            @Html.DisplayNameFor(model => model.Movie.MovieName)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Movie.MovieID)
+            @Html.DisplayFor(model => model.Movie.MovieName)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Movie.MovieGenre)
@@ -50,6 +50,6 @@
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Movie.MovieName">Edit</a> |
+    <a asp-page="./Edit" asp-route-id="@Model.Movie.MovieID">Edit</a> |
     <a asp-page="./Index">Back to List</a>
 </div>

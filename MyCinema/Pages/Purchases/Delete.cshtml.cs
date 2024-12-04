@@ -29,7 +29,7 @@ namespace MyCinema.Pages.Purchases
                 return NotFound();
             }
 
-            var purchase = await _context.Purchases.FirstOrDefaultAsync(m => m.MovieID == id);
+            var purchase = await _context.Purchases.FirstOrDefaultAsync(m => m.PurchaseID == id);
 
             if (purchase == null)
             {

@@ -24,8 +24,11 @@ namespace MyCinema.Migrations
 
             modelBuilder.Entity("MyCinema.Models.Costumer", b =>
                 {
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("IdentityCard")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdentityCard"));
 
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
@@ -42,17 +45,20 @@ namespace MyCinema.Migrations
                     b.Property<int?>("Gender")
                         .HasColumnType("int");
 
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("LastName");
+                    b.HasKey("IdentityCard");
 
                     b.ToTable("Costumers");
                 });
 
             modelBuilder.Entity("MyCinema.Models.Movie", b =>
                 {
-                    b.Property<string>("MovieName")
+                    b.Property<string>("MovieID")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("AgeRate")
@@ -64,7 +70,7 @@ namespace MyCinema.Migrations
                     b.Property<int?>("MovieGenre")
                         .HasColumnType("int");
 
-                    b.Property<string>("MovieID")
+                    b.Property<string>("MovieName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("MoviePrice")
@@ -73,56 +79,52 @@ namespace MyCinema.Migrations
                     b.Property<DateTime>("ReleaseDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("MovieName");
+                    b.HasKey("MovieID");
 
                     b.ToTable("Movies");
                 });
 
             modelBuilder.Entity("MyCinema.Models.Purchase", b =>
                 {
-                    b.Property<int>("MovieID")
+                    b.Property<int>("PurchaseID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MovieID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PurchaseID"));
 
                     b.Property<int>("CostumerID")
                         .HasColumnType("int");
 
-                    b.Property<string>("CostumersLastName")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("MovieID")
+                        .HasColumnType("int");
 
-                    b.Property<string>("MoviesMovieName")
+                    b.Property<string>("MoviesMovieID")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("PurchaseDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("PurchaseID")
-                        .HasColumnType("int");
-
                     b.Property<int>("SerieID")
                         .HasColumnType("int");
 
-                    b.Property<string>("SeriesSerieName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.HasKey("PurchaseID");
 
-                    b.HasKey("MovieID");
+                    b.HasIndex("CostumerID");
 
-                    b.HasIndex("CostumersLastName");
+                    b.HasIndex("MoviesMovieID");
 
-                    b.HasIndex("MoviesMovieName");
-
-                    b.HasIndex("SeriesSerieName");
+                    b.HasIndex("SerieID");
 
                     b.ToTable("Purchases");
                 });
 
             modelBuilder.Entity("MyCinema.Models.Serie", b =>
                 {
-                    b.Property<string>("SerieName")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("SerieID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SerieID"));
 
                     b.Property<string>("AgeRate")
                         .HasColumnType("nvarchar(max)");
@@ -139,13 +141,13 @@ namespace MyCinema.Migrations
                     b.Property<int?>("SerieGenre")
                         .HasColumnType("int");
 
-                    b.Property<int>("SerieID")
-                        .HasColumnType("int");
+                    b.Property<string>("SerieName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("SeriePrice")
                         .HasColumnType("int");
 
-                    b.HasKey("SerieName");
+                    b.HasKey("SerieID");
 
                     b.ToTable("Series");
                 });
@@ -154,15 +156,17 @@ namespace MyCinema.Migrations
                 {
                     b.HasOne("MyCinema.Models.Costumer", "Costumers")
                         .WithMany("Purchases")
-                        .HasForeignKey("CostumersLastName");
+                        .HasForeignKey("CostumerID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("MyCinema.Models.Movie", "Movies")
                         .WithMany("Purchases")
-                        .HasForeignKey("MoviesMovieName");
+                        .HasForeignKey("MoviesMovieID");
 
                     b.HasOne("MyCinema.Models.Serie", "Series")
                         .WithMany("Purchases")
-                        .HasForeignKey("SeriesSerieName")
+                        .HasForeignKey("SerieID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

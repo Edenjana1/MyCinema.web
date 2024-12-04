@@ -21,14 +21,14 @@ namespace MyCinema.Pages.Series
 
         public Serie Serie { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(string id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var serie = await _context.Series.FirstOrDefaultAsync(m => m.SerieName == id);
+            var serie = await _context.Series.FirstOrDefaultAsync(m => m.SerieID == id);
             if (serie == null)
             {
                 return NotFound();

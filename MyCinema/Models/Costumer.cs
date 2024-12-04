@@ -10,6 +10,8 @@ namespace MyCinema.Models
     {
         public int CustomerID { get; set; }
         [Key]
+        
+        public int IdentityCard {  get; set; }
         public string LastName { get; set; }
         public string FirstMidName { get; set; }
         public Gender? Gender { get; set; }

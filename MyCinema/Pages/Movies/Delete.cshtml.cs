@@ -29,7 +29,7 @@ namespace MyCinema.Pages.Movies
                 return NotFound();
             }
 
-            var movie = await _context.Movies.FirstOrDefaultAsync(m => m.MovieName == id);
+            var movie = await _context.Movies.FirstOrDefaultAsync(m => m.MovieID == id);
 
             if (movie == null)
             {

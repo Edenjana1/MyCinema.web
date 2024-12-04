@@ -14,11 +14,16 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Costumer.CustomerID" class="control-label"></label>
-                <input asp-for="Costumer.CustomerID" class="form-control" />
-                <span asp-validation-for="Costumer.CustomerID" class="text-danger"></span>
+                <label asp-for="Costumer.IdentityCard" class="control-label"></label>
+                <input asp-for="Costumer.IdentityCard" class="form-control" />
+                <span asp-validation-for="Costumer.IdentityCard" class="text-danger"></span>
             </div>
-            <input type="hidden" asp-for="Costumer.LastName" />
+            <input type="hidden" asp-for="Costumer.IdentityCard" />
+            <div class="form-group">
+                <label asp-for="Costumer.LastName" class="control-label"></label>
+                <input asp-for="Costumer.LastName" class="form-control" />
+                <span asp-validation-for="Costumer.LastName" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="Costumer.FirstMidName" class="control-label"></label>
                 <input asp-for="Costumer.FirstMidName" class="form-control" />

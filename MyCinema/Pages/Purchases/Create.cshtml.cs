@@ -21,6 +21,7 @@ namespace MyCinema.Pages.Purchases
 
         public IActionResult OnGet()
         {
+        ViewData["SerieID"] = new SelectList(_context.Series, "SerieID", "SerieID");
             return Page();
         }
 

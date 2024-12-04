@@ -15,8 +15,10 @@ namespace MyCinema.Migrations
                 name: "Costumers",
                 columns: table => new
                 {
-                    LastName = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    IdentityCard = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CustomerID = table.Column<int>(type: "int", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FirstMidName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Gender = table.Column<int>(type: "int", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -25,15 +27,15 @@ namespace MyCinema.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Costumers", x => x.LastName);
+                    table.PrimaryKey("PK_Costumers", x => x.IdentityCard);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Movies",
                 columns: table => new
                 {
-                    MovieName = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    MovieID = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MovieID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    MovieName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     MovieGenre = table.Column<int>(type: "int", nullable: true),
                     MovieDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ReleaseDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -42,15 +44,16 @@ namespace MyCinema.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Movies", x => x.MovieName);
+                    table.PrimaryKey("PK_Movies", x => x.MovieID);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Series",
                 columns: table => new
                 {
-                    SerieName = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    SerieID = table.Column<int>(type: "int", nullable: false),
+                    SerieID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SerieName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SeasonNum = table.Column<int>(type: "int", nullable: false),
                     SerieGenre = table.Column<int>(type: "int", nullable: true),
                     ReleaseDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -60,58 +63,57 @@ namespace MyCinema.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Series", x => x.SerieName);
+                    table.PrimaryKey("PK_Series", x => x.SerieID);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Purchases",
                 columns: table => new
                 {
-                    MovieID = table.Column<int>(type: "int", nullable: false)
+                    PurchaseID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PurchaseID = table.Column<int>(type: "int", nullable: false),
+                    PurchaseDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    MovieID = table.Column<int>(type: "int", nullable: false),
                     SerieID = table.Column<int>(type: "int", nullable: false),
                     CostumerID = table.Column<int>(type: "int", nullable: false),
-                    PurchaseDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    MoviesMovieName = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    SeriesSerieName = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    CostumersLastName = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    MoviesMovieID = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Purchases", x => x.MovieID);
+                    table.PrimaryKey("PK_Purchases", x => x.PurchaseID);
                     table.ForeignKey(
-                        name: "FK_Purchases_Costumers_CostumersLastName",
-                        column: x => x.CostumersLastName,
+                        name: "FK_Purchases_Costumers_CostumerID",
+                        column: x => x.CostumerID,
                         principalTable: "Costumers",
-                        principalColumn: "LastName");
+                        principalColumn: "IdentityCard",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Purchases_Movies_MoviesMovieName",
-                        column: x => x.MoviesMovieName,
+                        name: "FK_Purchases_Movies_MoviesMovieID",
+                        column: x => x.MoviesMovieID,
                         principalTable: "Movies",
-                        principalColumn: "MovieName");
+                        principalColumn: "MovieID");
                     table.ForeignKey(
-                        name: "FK_Purchases_Series_SeriesSerieName",
-                        column: x => x.SeriesSerieName,
+                        name: "FK_Purchases_Series_SerieID",
+                        column: x => x.SerieID,
                         principalTable: "Series",
-                        principalColumn: "SerieName",
+                        principalColumn: "SerieID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Purchases_CostumersLastName",
+                name: "IX_Purchases_CostumerID",
                 table: "Purchases",
-                column: "CostumersLastName");
+                column: "CostumerID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Purchases_MoviesMovieName",
+                name: "IX_Purchases_MoviesMovieID",
                 table: "Purchases",
-                column: "MoviesMovieName");
+                column: "MoviesMovieID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Purchases_SeriesSerieName",
+                name: "IX_Purchases_SerieID",
                 table: "Purchases",
-                column: "SeriesSerieName");
+                column: "SerieID");
         }
 
         /// <inheritdoc />

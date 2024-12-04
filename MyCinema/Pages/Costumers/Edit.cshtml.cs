@@ -23,14 +23,14 @@ namespace MyCinema.Pages.Costumers
         [BindProperty]
         public Costumer Costumer { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(string id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var costumer =  await _context.Costumers.FirstOrDefaultAsync(m => m.LastName == id);
+            var costumer =  await _context.Costumers.FirstOrDefaultAsync(m => m.IdentityCard == id);
             if (costumer == null)
             {
                 return NotFound();
@@ -56,7 +56,7 @@ namespace MyCinema.Pages.Costumers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CostumerExists(Costumer.LastName))
+                if (!CostumerExists(Costumer.IdentityCard))
                 {
                     return NotFound();
                 }
@@ -69,9 +69,9 @@ namespace MyCinema.Pages.Costumers
             return RedirectToPage("./Index");
         }
 
-        private bool CostumerExists(string id)
+        private bool CostumerExists(int id)
         {
-            return _context.Costumers.Any(e => e.LastName == id);
+            return _context.Costumers.Any(e => e.IdentityCard == id);
         }
     }
 }
